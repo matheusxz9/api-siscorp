@@ -33,15 +33,20 @@ export class SolicitacoesService {
   }
 
   relatorio() {
-    const total = this.solicitacoes.length;
-    const porStatus = this.solicitacoes.reduce(
-      (contagem, solicitacao) => {
-        contagem[solicitacao.status] = (contagem[solicitacao.status] ?? 0) + 1;
-        return contagem;
-      },
-      {} as Record<StatusSolicitacao, number>,
-    );
+    let pendente = 0;
+    let aprovada = 0;
 
-    return { total, porStatus };
+    for (const solicitacao of this.solicitacoes) {
+      if (solicitacao.status === 'pendente') {
+        pendente++;
+      } else {
+        aprovada++;
+      }
+    }
+
+    return {
+      total: this.solicitacoes.length,
+      porStatus: { pendente, aprovada },
+    };
   }
 }
