@@ -18,9 +18,9 @@ export class UsuariosService {
   private readonly usuarios: Usuario[] = [
     {
       id: 1,
-      nome: 'Ana Lima',
-      email: 'ana@empresa.com',
-      senhaHash:'$2b$12$BHvjuSO.qK6SVROfR.VeHO8KpokP.h6R84wGW.EvQemoc1jH4vd/i',
+      nome: 'Matheus',
+      email: 'matheus@empresa.com',
+      senhaHash: '$2b$12$JRvLRezAsBUhSysVV8IqYuad5ydssJXhv8Cjt0jEMnlHH0w2RXr1K',
       papel: 'gestor',
       ativo: true,
     },
@@ -34,12 +34,12 @@ export class UsuariosService {
     },
     {
       id: 3,
-      nome: 'Carla',
-      email: 'carla@empresa.com',
-      senhaHash: '$2b$12$BHvjuSO.qK6SVROfR.VeHO8KpokP.h6R84wGW.EvQemoc1jH4vd/i',
+      nome: 'William',
+      email: 'william@empresa.com',
+      senhaHash: '$2b$12$nRrDJGOWS4BrwsHRwLqABu3LrYwJ9qJKBCk4AKddvSoqF2cnhb.d2',
       papel: 'auditor',
       ativo: true,
-    }
+    },
   ];
 
   buscarPorEmail(email: string) {
