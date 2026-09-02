@@ -10,6 +10,13 @@ export class SolicitacoesController {
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('gestor', 'auditor')
+  @Get('relatorio')
+  relatorio() {
+    return this.solicitacoes.relatorio();
+  }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('gestor', 'auditor')
   @Get(':id')
   buscarPorId(@Param('id', ParseIntPipe) id: number) {
     return this.solicitacoes.buscarPorId(id);

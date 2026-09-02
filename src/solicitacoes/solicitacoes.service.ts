@@ -1,11 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { normalize } from 'path';
 
 type StatusSolicitacao = 'pendente' | 'aprovada';
 
 type Solicitacao = {
-  id: number,
-  titulo: string,
+  id: number;
+  titulo: string;
   status: StatusSolicitacao;
 };
 
@@ -13,6 +12,8 @@ type Solicitacao = {
 export class SolicitacoesService {
   private readonly solicitacoes: Solicitacao[] = [
     { id: 1, titulo: 'Aquisição de notebook', status: 'pendente' },
+    { id: 2, titulo: 'Licença de software', status: 'aprovada' },
+    { id: 3, titulo: 'Cadeira ergonômica', status: 'pendente' },
   ];
 
   buscarPorId(id: number) {
@@ -29,5 +30,18 @@ export class SolicitacoesService {
     const solicitacao = this.buscarPorId(id);
     solicitacao.status = 'aprovada';
     return solicitacao;
+  }
+
+  relatorio() {
+    const total = this.solicitacoes.length;
+    const porStatus = this.solicitacoes.reduce(
+      (contagem, solicitacao) => {
+        contagem[solicitacao.status] = (contagem[solicitacao.status] ?? 0) + 1;
+        return contagem;
+      },
+      {} as Record<StatusSolicitacao, number>,
+    );
+
+    return { total, porStatus };
   }
 }
